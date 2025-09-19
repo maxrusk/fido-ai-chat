@@ -1,0 +1,790 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222.2, 84%, 4.9%);
+  --muted: hsl(210, 40%, 98%);
+  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222.2, 84%, 4.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222.2, 84%, 4.9%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
+  --primary: hsl(221.2, 83.2%, 53.3%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(210, 40%, 96%);
+  --secondary-foreground: hsl(222.2, 84%, 4.9%);
+  --accent: hsl(210, 40%, 96%);
+  --accent-foreground: hsl(222.2, 84%, 4.9%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(221.2, 83.2%, 53.3%);
+  --radius: 0.5rem;
+}
+
+/* Business Plan Canvas Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUpHero {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUpHero 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animation-delay-900 {
+  animation-delay: 0.9s;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Chat Dot Grid Background */
+.chat-dot-grid {
+  background-image: radial-gradient(circle, rgba(156, 163, 175, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+/* Dark mode dot grid */
+.dark .chat-dot-grid {
+  background-image: radial-gradient(circle, rgba(75, 85, 99, 0.25) 1px, transparent 1px);
+}
+
+/* Landing Page Dot Grid Background */
+.landing-dot-grid {
+  background-image: 
+    linear-gradient(to bottom right, 
+      rgba(59, 130, 246, 0.05), 
+      rgba(6, 182, 212, 0.05), 
+      rgba(34, 197, 94, 0.05)
+    ),
+    radial-gradient(circle, rgba(156, 163, 175, 0.12) 1px, transparent 1px);
+  background-size: 100% 100%, 20px 20px;
+  background-position: 0 0, 0 0;
+}
+
+/* Dark mode landing page dot grid */
+.dark .landing-dot-grid {
+  background-image: 
+    linear-gradient(to bottom right, 
+      rgba(15, 23, 42, 0.9), 
+      rgba(30, 58, 138, 0.9), 
+      rgba(20, 83, 45, 0.9)
+    ),
+    radial-gradient(circle, rgba(75, 85, 99, 0.2) 1px, transparent 1px);
+}
+
+/* Micro-interaction Animations for Buttons */
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes buttonBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes buttonGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(29, 78, 216, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(29, 78, 216, 0.6), 0 0 30px rgba(74, 222, 128, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(29, 78, 216, 0.3);
+  }
+}
+
+@keyframes buttonScale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes buttonSlide {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Tactile button styles with pixel effects */
+.pixel-button {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.pixel-button::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--pixel-purple);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pixel-button:hover::before {
+  opacity: 0.1;
+}
+
+.pixel-button:hover {
+  transform: scale(1.1) rotate(5deg);
+  border-color: var(--pixel-purple);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+/* Animation Classes */
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s ease-in-out;
+}
+
+.animate-button-pulse {
+  animation: buttonPulse 0.6s ease-in-out;
+}
+
+.animate-button-bounce {
+  animation: buttonBounce 0.8s ease-in-out;
+}
+
+.animate-button-glow {
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
+.animate-button-scale {
+  animation: buttonScale 0.3s ease-in-out;
+}
+
+.animate-button-slide {
+  animation: buttonSlide 0.4s ease-in-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.5s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+/* Enhanced Button Hover States */
+.btn-micro-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-micro-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-micro-hover:hover::before {
+  left: 100%;
+}
+
+.btn-micro-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-micro-hover:active {
+  transform: translateY(0);
+  transition: all 0.1s;
+}
+
+/* Mobile-Optimized Styles */
+.mobile-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.mobile-input {
+  font-size: 16px; /* Prevents iOS zoom on focus */
+}
+
+.mobile-safe-area {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Responsive Container */
+.responsive-container {
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .responsive-container {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-container {
+    padding: 0.5rem;
+  }
+}
+
+/* Max Width Container for Better Readability */
+.max-width-container {
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .max-width-container {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+}
+
+/* Mobile-Optimized Touch Interactions */
+@media (hover: hover) {
+  .hover-effect:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (hover: none) {
+  .hover-effect:active {
+    transform: scale(0.98);
+    transition: transform 0.1s;
+  }
+}
+
+/* Mobile-Optimized Typography */
+@media (max-width: 768px) {
+  .mobile-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .mobile-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+  
+  .mobile-body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+/* Full viewport utilization and layout optimization */
+.viewport-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chat-input-container {
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* Mobile-Optimized Grid */
+@media (max-width: 640px) {
+  .mobile-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Swipe-friendly Card Interactions */
+.swipe-card {
+  transition: transform 0.2s ease-out;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.swipe-card:active {
+  transform: scale(0.98);
+}
+
+/* Primary Button Variants with Micro-interactions */
+.btn-primary-micro {
+  background: linear-gradient(135deg, #1D4ED8, #3B82F6);
+  border: none;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary-micro::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.btn-primary-micro:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-primary-micro:hover {
+  background: linear-gradient(135deg, #1E40AF, #2563EB);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(29, 78, 216, 0.4);
+}
+
+.btn-secondary-micro {
+  background: linear-gradient(135deg, #4ADE80, #22C55E);
+  border: none;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary-micro:hover {
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(74, 222, 128, 0.4);
+}
+
+.btn-outline-micro {
+  background: transparent;
+  border: 2px solid #1D4ED8;
+  color: #1D4ED8;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-outline-micro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1D4ED8, #3B82F6);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.btn-outline-micro:hover::before {
+  left: 0;
+}
+
+.btn-outline-micro:hover {
+  color: white;
+  border-color: #1E40AF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.3);
+}
+
+.dark {
+  --background: hsl(221, 39%, 11%); /* Midnight Navy #0F172A */
+  --foreground: hsl(248, 100%, 98%);
+  --muted: hsl(215, 28%, 17%); /* Deep Charcoal #1E1E2F */
+  --muted-foreground: hsl(215, 16%, 65%);
+  --popover: hsl(221, 39%, 11%);
+  --popover-foreground: hsl(248, 100%, 98%);
+  --card: hsl(215, 28%, 17%);
+  --card-foreground: hsl(248, 100%, 98%);
+  --border: hsl(215, 28%, 17%);
+  --input: hsl(215, 28%, 17%);
+  --primary: hsl(213, 100%, 56%); /* Electric Blue #1D4ED8 */
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(154, 69%, 61%); /* Neon Green #4ADE80 */
+  --secondary-foreground: hsl(221, 39%, 11%);
+  --accent: hsl(215, 28%, 17%);
+  --accent-foreground: hsl(248, 100%, 98%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(213, 100%, 56%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Allow text selection for input fields and content areas */
+  input, textarea, [contenteditable="true"] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+
+  /* Allow text selection for message content */
+  .message-content {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+}
+
+@layer utilities {
+  /* Reset and layout fixes */
+  html, body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    touch-action: manipulation;
+  }
+
+  #root {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  }
+
+  /* Sidebar positioning - FIXED STRUCTURE */
+  .mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 256px;
+    z-index: 50;
+    background: white;
+    border-right: 1px solid hsl(var(--border));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .dark .mobile-sidebar {
+    background: hsl(var(--background));
+    border-right: 1px solid hsl(var(--border));
+  }
+
+  /* Show sidebar on desktop */
+  @media (min-width: 768px) {
+    .mobile-sidebar {
+      transform: translateX(0);
+      position: fixed;
+    }
+  }
+
+  /* Show sidebar when open on mobile */
+  .mobile-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .glass-morphism {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(79, 70, 229, 0.1);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+  }
+  
+  .dark .glass-morphism {
+    background: rgba(79, 70, 229, 0.2);
+    border: 1px solid rgba(79, 70, 229, 0.3);
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Intelligent Screen Adaptation - Fluid Responsive Design */
+  
+  /* Small mobile devices (320px - 480px) */
+  @media (max-width: 480px) {
+    body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    
+    /* Ultra-compact spacing for small screens */
+    .responsive-container {
+      padding: 8px !important;
+      gap: 8px !important;
+    }
+    
+    /* Touch-friendly targets for small screens */
+    button, input, textarea, select, a {
+      min-height: 48px;
+      min-width: 48px;
+    }
+    
+    /* Optimized text sizing */
+    textarea, input {
+      font-size: 16px;
+    }
+    
+    /* Hide secondary elements on very small screens */
+    .hide-xs {
+      display: none !important;
+    }
+    
+    /* Compact header on small mobile */
+    .header-compact {
+      padding: 8px 12px !important;
+    }
+  }
+
+  /* Standard mobile (481px - 768px) */
+  @media (min-width: 481px) and (max-width: 768px) {
+    body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    
+    /* Standard mobile spacing */
+    .responsive-container {
+      padding: 12px !important;
+      gap: 12px !important;
+    }
+    
+    /* Touch targets */
+    button, input, textarea, select, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    textarea, input {
+      font-size: 16px;
+    }
+    
+    /* Show elements hidden on xs */
+    .show-sm {
+      display: block !important;
+    }
+  }
+
+  /* Tablet portrait (769px - 1024px) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .responsive-container {
+      padding: 16px !important;
+      gap: 16px !important;
+    }
+    
+    /* Show tablet-specific elements */
+    .show-md {
+      display: block !important;
+    }
+    
+    /* Tablet sidebar adjustments */
+    .tablet-sidebar {
+      width: 240px !important;
+    }
+  }
+
+  /* Desktop (1025px - 1439px) */
+  @media (min-width: 1025px) and (max-width: 1439px) {
+    .responsive-container {
+      padding: 20px !important;
+      gap: 20px !important;
+    }
+    
+    /* Show desktop elements */
+    .show-lg {
+      display: block !important;
+    }
+  }
+
+  /* Large desktop (1440px+) */
+  @media (min-width: 1440px) {
+    .responsive-container {
+      padding: 24px !important;
+      gap: 24px !important;
+    }
+    
+    /* Max width for ultra-wide screens */
+    .max-width-container {
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+    }
+    
+    .show-xl {
+      display: block !important;
+    }
+  }
+
+  /* Legacy mobile support */
+  @media (max-width: 768px) {
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    .mobile-padding {
+      padding: 0.75rem;
+    }
+  }
+
+  /* Safe area support for mobile devices */
+  .safe-area-inset-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .safe-area-inset-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+
+  /* Mobile scroll improvements */
+  @supports (-webkit-overflow-scrolling: touch) {
+    .mobile-scroll {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* Better mobile focus states */
+  @media (max-width: 768px) {
+    *:focus {
+      outline: 2px solid hsl(var(--ring));
+      outline-offset: 2px;
+    }
+  }
+}
